@@ -1,3 +1,5 @@
+using AsteroidsWebApi.Service;
+using AsteroidsWebApi.Service.Interface;
 using Microsoft.AspNetCore.Mvc;
 [assembly: ApiController]
 
@@ -6,7 +8,8 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+builder.Services.AddTransient<IAsteroidsService, AsteroidsService>();
+builder.Services.AddHttpContextAccessor();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddHttpClient();
 builder.Services.AddSwaggerGen(c => {
