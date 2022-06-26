@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32602.215
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AsteroidsWebApi", "AsteroidsWebApi\AsteroidsWebApi.csproj", "{B1A2130B-864A-46CE-8204-99D075CA7613}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B1A2130B-864A-46CE-8204-99D075CA7613}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B1A2130B-864A-46CE-8204-99D075CA7613}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B1A2130B-864A-46CE-8204-99D075CA7613}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B1A2130B-864A-46CE-8204-99D075CA7613}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A03C70D2-0EE9-434C-A7D9-60A798DBD479}
+	EndGlobalSection
+EndGlobal
