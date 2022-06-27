@@ -4,6 +4,7 @@ using System.Text.Json;
 using System.Web.Http.Description;
 using AsteroidsWebApi.DTO;
 using AsteroidsWebApi.Service.Interface;
+using AsteroidsWebApi.Wrappers;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Net.Http.Headers;
@@ -28,20 +29,35 @@ namespace AsteroidsWebApi.Controllers
 
         [ResponseType(typeof(HttpResponseMessage))]
         [HttpGet("{planet}", Name = "AsteroidsList")]
-        public async Task<ActionResult<string>> Get(string planet, DateTime startDate, DateTime endDate, int regsPage, int page)
+        public IActionResult Get(string planet, DateTime startDate, DateTime endDate, int page, int regsPage)
         {
             try
             {
-                string asteroids = await _asteroidsService.Get(planet, startDate, endDate, regsPage, page, _httpClientFactory);
-                
-
-                if (asteroids != null)
-                    return Ok(asteroids);
-                else
+                PaginationFilter validFilter = new PaginationFilter(page, regsPage);
+                List<Asteroids>? asteroids = _asteroidsService.Get(planet.ToUpper(), startDate, endDate, _httpClientFactory);
+                if(asteroids == null)
+                {
+                    _logger.LogError("API call returned no data.");
                     return NoContent();
+                }
+
+                List<Asteroids> pagedData = asteroids.Skip((validFilter.PageNumber - 1) * validFilter.PageSize)
+                                     .Take(validFilter.PageSize)
+                                     .ToList();
+
+                if (pagedData.Count == 0)
+                {
+                    _logger.LogError("No data for the selected page.");
+                    return NoContent();
+                }
+
+                string response = JsonSerializer.Serialize(pagedData, new JsonSerializerOptions { WriteIndented = true });
+                PagedResponse<string> paged = new PagedResponse<string>(response, page, regsPage);
+                return Ok(paged);
             }
             catch (Exception e)
             {
+                _logger.LogError($"An error occured during execution. {e}");
                 return NotFound(e.Message);
             }
         }

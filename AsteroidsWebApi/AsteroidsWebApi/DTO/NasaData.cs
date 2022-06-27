@@ -1,63 +1,95 @@
+using System.Text.Json.Serialization;
+
 namespace AsteroidsWebApi.DTO
 {
     public class NasaData
     {
-        public Links links { get; set; }
-        public int element_count { get; set; }
-        public Dictionary<string, List<NearEarthObjects>> near_earth_objects { get; set; }
+        [JsonPropertyName("links")]
+        public Links Links { get; set; }
+        [JsonPropertyName("element_count")]
+        public int ElementCount { get; set; }
+        [JsonPropertyName("near_earth_objects")]
+        public Dictionary<string, List<NearEarthObjects>> NearEarthObjects { get; set; }
     }
 
     public class Links
     {
-        public string next { get; set; }
-        public string prev { get; set; }
-        public string self { get; set; }
+        [JsonPropertyName("next")]
+        public string Next { get; set; }
+        [JsonPropertyName("prev")]
+        public string Prev { get; set; }
+        [JsonPropertyName("self")]
+        public string Self { get; set; }
 
     }
 
     public class NearEarthObjects
     {
-        public Links links { get; set; }
-        public string id { get; set; }
-        public string neo_reference_id { get; set; }
-        public string name { get; set; }
-        public string nasa_jpl_url { get; set; }
-        public double absolute_magnitude_h { get; set; }
-        public Dictionary<string, MinMax>? estimated_diameter { get; set; }
-        public bool is_potentially_hazardous_asteroid { get; set; }
-
-        public IList<CloseApproachData> close_approach_data { get; set; }
-        public bool is_sentry_object { get; set; }
+        [JsonPropertyName("links")]
+        public Links Links { get; set; }
+        [JsonPropertyName("id")]
+        public string Id { get; set; }
+        [JsonPropertyName("neo_reference_id")]
+        public string NeoRefId { get; set; }
+        [JsonPropertyName("name")]
+        public string Name { get; set; }
+        [JsonPropertyName("nasa_jpl_url")]
+        public string NasaJplUrl { get; set; }
+        [JsonPropertyName("absolute_magnitude_h")]
+        public double AbsMagnitudeH { get; set; }
+        [JsonPropertyName("estimated_diameter")]
+        public Dictionary<string, MinMax>? AvgDiameter { get; set; }
+        [JsonPropertyName("is_potentially_hazardous_asteroid")]
+        public bool IsHazardousAsteroid { get; set; }
+        [JsonPropertyName("close_approach_data")]
+        public IList<CloseApproachData> CloseApproachData { get; set; }
+        [JsonPropertyName("is_sentry_object")]
+        public bool IsSentryObject { get; set; }
     }
 
     public class MinMax
     {
-        public double estimated_diameter_min { get; set; }
-        public double estimated_diameter_max { get; set; }
+        [JsonPropertyName("estimated_diameter_min")]
+        public double MinDiameter { get; set; }
+        [JsonPropertyName("estimated_diameter_max")]
+        public double MaxDiameter { get; set; }
     }
 
     public class CloseApproachData
     {
-        public string close_approach_date { get; set; }
-        public string close_approach_date_full { get; set; }
-        public long epoch_date_close_approach { get; set; }
-        public Velocity relative_velocity { get; set; }
-        public Distance miss_distance { get; set; }
-        public string orbiting_body { get; set; }
+        [JsonPropertyName("close_approach_date")]
+        public string ApproachDate { get; set; }
+        [JsonPropertyName("close_approach_date_full")]
+        public string ApproachDateFull { get; set; }
+        [JsonPropertyName("epoch_date_close_approach")]
+        public long EpochApproachDate { get; set; }
+        [JsonPropertyName("relative_velocity")]
+        public Velocity RelativeVelocity { get; set; }
+        [JsonPropertyName("miss_distance")]
+        public Distance MissDistance { get; set; }
+        [JsonPropertyName("orbiting_body")]
+        public string OrbitingBody { get; set; }
     }
 
     public class Velocity
     {
-        public string kilometers_per_second { get; set; }
-        public string kilometers_per_hour { get; set; }
-        public string miles_per_hour { get; set; }
+        [JsonPropertyName("kilometers_per_second")]
+        public string KilometersSecond { get; set; }
+        [JsonPropertyName("kilometers_per_hour")]
+        public string KilometersHour { get; set; }
+        [JsonPropertyName("miles_per_hour")]
+        public string MilesHour { get; set; }
     }
 
     public class Distance
     {
-        public string astronomical { get; set; }
-        public string lunar { get; set; }
-        public string kilometers { get; set; }
-        public string miles { get; set; }
+        [JsonPropertyName("astronomical")]
+        public string Astronomical { get; set; }
+        [JsonPropertyName("lunar")]
+        public string Lunar { get; set; }
+        [JsonPropertyName("kilometers")]
+        public string Kilometers { get; set; }
+        [JsonPropertyName("miles")]
+        public string Miles { get; set; }
     }
 }

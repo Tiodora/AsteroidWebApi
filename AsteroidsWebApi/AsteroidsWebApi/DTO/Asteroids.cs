@@ -1,17 +1,27 @@
-﻿namespace AsteroidsWebApi.DTO
+﻿using System.Text.Json.Serialization;
+
+namespace AsteroidsWebApi.DTO
 {
     public class Asteroids
     {
-        public string name { get; set; }
-        public double diameter { get; set; }
-        public AsteroidApproachData close_approach_data { get; set; }
+        [JsonPropertyName("name")]
+        public string Name { get; set; }
+        [JsonPropertyName("diameter")]
+        public double Diameter { get; set; }
+        [JsonPropertyName("close_approach_data")]
+        public AsteroidApproachData ApproachData { get; set; }
+        [JsonIgnore]
+        public bool IsHazardousAsteroid { get; set; }
     }
 
     public class AsteroidApproachData
     {
-        public string kilometers_per_hour { get; set; }
-        public DateTime close_approach_date { get; set; }
-        public string orbiting_body { get; set; }
+        [JsonPropertyName("kilometers_per_hour")]
+        public string KilometersHour { get; set; }
+        [JsonPropertyName("close_approach_date")]
+        public DateTime ApproachDate { get; set; }
+        [JsonPropertyName("orbiting_body")]
+        public string OrbitingBody { get; set; }
     }
 
 }
